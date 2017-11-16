@@ -1,5 +1,11 @@
 "use strict";
 
-app.controller("WishlistCtrl", function($scope){
+app.controller("WishlistCtrl", function($rootScope, $scope, MovieService){
 	$scope.controller = "WishlistCtrl";
+
+	MovieService.getWishlistMovies($rootScope.uid).then((results) => {
+		$scope.movies = results;
+	}).catch((err) => {
+		console.log("error in getRatedMovies", err);
+	});
 });
