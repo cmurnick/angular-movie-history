@@ -39,7 +39,13 @@ app.service("MovieService", function($http, $q, FIREBASE_CONFIG) {
 		 		reject(err);
 		 });
 		 });
+		 };
+
+
+		 const postNewMovie = (NewMovie) => {
+		 	return $http.post(`${FIREBASE_CONFIG.databaseURL}/movies.json`, JSON.stringify(NewMovie));
+
 	};
-	return{getRatedMovies, getWishlistMovies};
+	return{getRatedMovies, getWishlistMovies, postNewMovie};
 });
 
