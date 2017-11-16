@@ -25,6 +25,16 @@ app.controller("SearchCtrl", function($location, $rootScope, $scope, MovieServic
 		});
 	};
 
+	$scope.saveWishlist = (tmdbMovie) => {
+			let newMovie = createMovie(tmdbMovie);
+			newMovie.isWatched = false;
+			MovieService.postNewMovie(newMovie).then (() => {
+				$location.path('/wishList');
+			}).catch((err) => {
+				console.log("error in postNewMovie", err);
+			});
+		};
+
 
 	$scope.enterPush = (event) => {
 		if(event.keyCode === 13) {
