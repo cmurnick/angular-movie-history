@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("RatedCtrl", function( $rootScope, $scope, MovieService){
+app.controller("RatedCtrl", function($location, $rootScope, $scope, MovieService){
 	$scope.movies= [];
 
 	const getMovies = () => {
@@ -35,4 +35,10 @@ app.controller("RatedCtrl", function( $rootScope, $scope, MovieService){
 			});
 		}
 	};
+
+	$scope.movieDetail = (movieId) => {
+		$location.path(`/movie/${movieId}`);
+	};
 });
+
+

@@ -26,7 +26,7 @@ app.controller("SearchCtrl", function($location, $rootScope, $scope, MovieServic
 		let newMovie = MovieService.createMovieObject(tmdbMovie);
 		newMovie.isWatched = false;
 		MovieService.postNewMovie(newMovie).then (() => {
-			$location.path('/wishList');
+			$location.path('/wishlist');
 		}).catch((err) => {
 			console.log("error in postNewMovie", err);
 		});
