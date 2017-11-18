@@ -13,8 +13,10 @@
         	<p>
 
 
-				<p>Rating: {{movie.rating}}</p>
-       		</p>
+				<p>Rating: 
+        <star-rating-comp rating="movie.rating" size="'large'" num-of-stars="5" on-click="starChange($event, movie)"></star-rating-comp>
+          </p>
+       	</p>
        </div>
      </div>
     </div>
