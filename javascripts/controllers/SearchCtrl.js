@@ -4,20 +4,14 @@ app.controller("SearchCtrl", function($location, $rootScope, $scope, MovieServic
 	$scope.movies = [];
 
 
-	const createMovie = (movie) => {
-		return {
-			"title": movie.title,
-				"overview": movie.overview,
-				"poster_path": movie.poster_path,
-				"rating": 0,
-				"isWatched": true,
-				"uid": $rootScope.uid
-		};
-	};
+
 
 
 	$scope.saveRated = (tmdbMovie) => {
-		let newMovie = createMovie(tmdbMovie);
+		tmdbMovie.uid = $rootScope.uid;
+		tmdbMovie.isWatched = true;
+		tmdbService.rating = 0;
+		let newMovie = MovieService.createMovieObject(tmdbMovie);
 		MovieService.postNewMovie(newMovie).then (() => {
 			$location.path('/rated');
 		}).catch((err) => {
@@ -26,13 +20,16 @@ app.controller("SearchCtrl", function($location, $rootScope, $scope, MovieServic
 	};
 
 	$scope.saveWishlist = (tmdbMovie) => {
-			let newMovie = createMovie(tmdbMovie);
-			newMovie.isWatched = false;
-			MovieService.postNewMovie(newMovie).then (() => {
-				$location.path('/wishList');
-			}).catch((err) => {
-				console.log("error in postNewMovie", err);
-			});
+		tmdbMovie.uid = $rootScope.uid;
+		tmdbMovie.isWatched = false;
+		tmdbService.rating= 0;
+		let newMovie = MovieService.createMovieObject(tmdbMovie);
+		newMovie.isWatched = false;
+		MovieService.postNewMovie(newMovie).then (() => {
+			$location.path('/wishList');
+		}).catch((err) => {
+			console.log("error in postNewMovie", err);
+		});
 		};
 
 
