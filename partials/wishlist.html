@@ -3,9 +3,15 @@
 	{{controller}}
 </div>
 
+
+<div class="input-group input-group-lg col-xs-6 col-xs-offset-3">
+    <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true"></span>
+    <input type="text" class="form-control" placeholder="Find a movie" ng-model="wordz">
+  </div>
+
 <div id="movies">
 
-    <div ng-repeat="movie in movies" class="col-sm-6 col-md-4 movie">
+    <div ng-repeat="movie in movies | filter: wordz" class="col-sm-6 col-md-4 movie">
       <div class="thumbnail">
        <button class="btn btn-primary detail" role="button" ng-click="movieDetail(movie.id)">Search</button>
 
